@@ -1,0 +1,14 @@
+---
+- name: Install necessary packages
+  apt:
+    name:
+      - curl
+      - git
+      - build-essential
+      - wget
+      - vim
+    state: present
+
+# Print a message to the console
+- debug:
+    msg: "Installation of necessary packages complete."

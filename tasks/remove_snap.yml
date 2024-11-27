@@ -1,0 +1,26 @@
+---
+- name: Remove all snap packages
+  shell: |
+    snap list | awk 'NR>1 {print $1}' | grep -vE '^(bare|core22|snapd)$' | xargs -I{} snap remove --purge {}
+  args:
+    executable: /bin/bash
+
+- name: Remove snapd package completely (purge)
+  apt:
+    name: snapd
+    state: absent
+    purge: yes
+
+- name: Remove snap-related directories (optional, if any)
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /var/cache/snapd
+    - /var/snap
+    - /snap
+  when: ansible_facts['distribution'] == 'Ubuntu'  # Ensures this only runs on Ubuntu
+
+- name: Print completion message
+  debug:
+    msg: "Snap package removal complete."

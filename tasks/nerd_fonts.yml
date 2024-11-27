@@ -1,0 +1,8 @@
+---
+- name: Install fonts from src/fonts directory
+  shell: |
+    mkdir -p ~/.local/share/fonts
+    cp -r /path/to/src/fonts/* ~/.local/share/fonts/
+    fc-cache -fv
+  args:
+    executable: /bin/bash

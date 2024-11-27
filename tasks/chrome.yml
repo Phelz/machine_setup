@@ -1,0 +1,28 @@
+---
+# Check if Chrome is installed first
+- name: Check if Chrome is installed
+  stat: path=/usr/bin/google-chrome
+  register: chrome_installed
+
+- name: Print message if Chrome is installed
+  debug:
+    msg: "Chrome is already installed."
+  when: chrome_installed.stat.exists
+
+# If chrome already installed, skip the next tasks
+- name: Skip Chrome installation
+  debug:
+    msg: "Skipping Chrome installation, as it is already installed."
+  when: chrome_installed.stat.exists
+
+# If chrome is not installed, download and install it
+- name: Download Chrome package
+  get_url:
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dest: /tmp/google-chrome-stable_current_amd64.deb
+  when: not chrome_installed.stat.exists
+
+- name: Install Chrome package
+  apt:
+    deb: /tmp/google-chrome-stable_current_amd64.deb
+  when: not chrome_installed.stat.exists

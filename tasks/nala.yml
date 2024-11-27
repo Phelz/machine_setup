@@ -1,0 +1,25 @@
+---
+- name: Install nala package
+  apt:
+    name: nala
+    state: present
+
+- name: Run nala fetch with specified input (automating the interactive prompts)
+  expect:
+    command: nala fetch -c CA
+    responses:
+      'Enter the numbers of the mirrors to use (separated by spaces)': '1 2 3'  # Provide the mirror numbers
+      'Do you want to use these mirrors?': 'y'  # Confirm with 'y'
+    timeout: 60  # Set a timeout for the process to complete
+  args:
+    executable: /bin/bash
+
+- name: Update and upgrade packages using nala
+  shell: |
+    nala update && nala upgrade -y
+  args:
+    executable: /bin/bash
+
+- name: Print completion message
+  debug:
+    msg: "Nala installation and configuration complete."

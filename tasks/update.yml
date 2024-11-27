@@ -1,0 +1,11 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+    force_apt_get: yes
+
+# Print a message to the console
+- debug:
+    msg: "Update and upgrade apt packages complete."
+

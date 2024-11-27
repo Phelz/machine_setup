@@ -1,0 +1,13 @@
+---
+- name: Install Cappuccino theme for Zsh
+  git:
+    repo: https://github.com/catppuccin/zsh.git
+    dest: ~/.oh-my-zsh/custom/themes/catppuccin
+  register: cappuccino_clone
+
+- name: Set Cappuccino Frappe theme in Zsh
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^ZSH_THEME=.*'
+    line: 'ZSH_THEME="catppuccin-frappe"'
+    when: cappuccino_clone.changed

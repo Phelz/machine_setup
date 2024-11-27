@@ -1,0 +1,27 @@
+---
+- name: Install Zsh
+  apt:
+    name: zsh
+    state: present
+
+- name: Set Zsh as the default shell
+  shell: chsh -s $(which zsh) $USER
+  args:
+    executable: /bin/bash
+
+- name: Install Oh My Zsh
+  shell: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    executable: /bin/bash
+
+- name: Install Powerlevel10k theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+
+- name: Set Powerlevel10k as the default theme
+  lineinfile:
+    path: ~/.zshrc
+    regexp: '^ZSH_THEME=.*'
+    line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
