@@ -10,8 +10,6 @@
       - stow
       - nano
       - htop
-      - tmux
-
     state: present
 
 # Print a message to the console

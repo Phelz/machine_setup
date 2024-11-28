@@ -9,8 +9,10 @@ Since this is my laptop, I'd need to
 - Link Google account.
 - 
 
+- Run commman `ansible-playbook playbook.yml -e "target_user=username"` replacing "username".
 
 ## What I did...
+
 
 
 ###  1. Configuring the XDG_CONFIG_HOME

@@ -2,9 +2,15 @@
 - name: Automate Ubuntu setup
   hosts: localhost
   become: true
+  # vars:
+  #     target_user: "philo"
   tasks:
     # - include_tasks: tasks/update.yml
     # - include_tasks: tasks/packages.yml
+
+    - include_tasks: tasks/terminal.yml
+      # vars:
+      #   target_user: "{{ target_user }}"  # Pass target_user to included task
     # - include_tasks: tasks/chrome.yml
     # - include_tasks: tasks/nala.yml
     # - include_tasks: tasks/remove_snap.yml
