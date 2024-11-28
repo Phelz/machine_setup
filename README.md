@@ -4,11 +4,15 @@
 
 ### What I need to do...
 
-First, make sure to run:
+1. First, make sure to run:
 ```
 sudo apt update -y && sudo apt upgrade -y
 ```
-Then run the ansible playbook via:
+2. Now install `git` and `ansible`:
+```
+sudo apt install git ansible -y
+```
+3. Then run the ansible playbook via:
 ```
 sudo ansible-playbook -v setup.yml --become-user=USERNAME --ask-become-pass
 ```
