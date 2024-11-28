@@ -3,10 +3,15 @@
   apt:
     name:
       - curl
+      - wget
       - git
       - build-essential
-      - wget
       - vim
+      - stow
+      - nano
+      - htop
+      - tmux
+
     state: present
 
 # Print a message to the console

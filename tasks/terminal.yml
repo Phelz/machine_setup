@@ -1,0 +1,18 @@
+# Terminal Tools
+---
+
+# Start by installing zsh
+- name: Install Zsh
+  apt:
+    name: zsh
+    state: present
+
+# Make Zsh the default shell
+- name: Set Zsh as the default shell
+  shell: chsh -s $(which zsh) $USER
+  args:
+    executable: /bin/bash
+
+# Install zoxide
+- name: Install zoxide
+  shell: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh

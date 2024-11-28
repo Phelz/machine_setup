@@ -1,0 +1,11 @@
+# Install Stow to do all the symbolic linking for my dotfiles
+- name: Install Stow
+  apt:
+    name: stow
+    state: present
+
+# Clone the dotfiles repo https://github.com/Phelz/dotfiles
+- name: Clone dotfiles repo
+  git:
+    repo: https://github.com/Phelz/dotfiles
+    dest: /home/your_username/dotfiles
