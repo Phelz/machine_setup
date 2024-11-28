@@ -10,9 +10,9 @@ sudo apt update -y && sudo apt upgrade -y
 ```
 Then run the ansible playbook via:
 ```
-sudo ansible-playbook setup.yml -v --become-user=USERNAME
+sudo ansible-playbook -v setup.yml --become-user=USERNAME --ask-become-pass
 ```
-replacing `USERNAME`. 
+replacing `USERNAME`. The `--ask-become-pass` option prompts you for your password, and will enable you to authenticate yourself, as some processes require run-time validation.
 
 Since this is my laptop, I'd need to
 - Install GPU drivers.

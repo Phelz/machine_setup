@@ -5,9 +5,9 @@
   # vars:
   #     target_user: "philo"
   tasks:
-    # - include_tasks: tasks/update.yml
-    # - include_tasks: tasks/packages.yml
-
+    - include_tasks: tasks/update.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/terminal.yml
       # vars:
       #   target_user: "{{ target_user }}"  # Pass target_user to included task
