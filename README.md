@@ -4,6 +4,16 @@
 
 ### What I need to do...
 
+First, make sure to run:
+```
+sudo apt update -y && sudo apt upgrade -y
+```
+Then run the ansible playbook via:
+```
+sudo ansible-playbook setup.yml -v --become-user=USERNAME
+```
+replacing `USERNAME`. 
+
 Since this is my laptop, I'd need to
 - Install GPU drivers.
 - Link Google account.
