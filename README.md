@@ -1,16 +1,14 @@
 # Machine Setup
---- 
 ## Installation
 
 
 
----
 ## What I did...
 
 
 ###  1. Configuring the XDF_CONFIG_HOME
 
-Set the `$XDG_CONFIG_HOME` directory to be `$HOME/.config` so that all dotfile configurations are there. 
+Set the `$XDG_CONFIG_HOME` directory to be `$HOME/.config` so that all dotfile configurations are there. To do so, add these lines to the `.zshenv` file in the `$HOME` directory:
 
 ```
 export XDG_CONFIG_HOME="$HOME/.config"
