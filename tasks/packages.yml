@@ -10,6 +10,7 @@
       - stow
       - nano
       - htop
+      - gh
     state: present
 
 # Print a message to the console

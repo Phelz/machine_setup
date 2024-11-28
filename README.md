@@ -7,7 +7,9 @@
 Since this is my laptop, I'd need to
 - Install GPU drivers.
 - Link Google account.
-- Setup an SSH Key and add it to my github account.
+- Setup an SSH Key and add it to my github account. This part is done by
+    1. Generating an SSH Key.
+    2. Using `gh auth login` along with my personal access token.
 
 - Run commmand `ansible-playbook playbook.yml -e "target_user=username"` replacing "username".
 
