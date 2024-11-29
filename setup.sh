@@ -70,7 +70,7 @@ fi
 # Change ownership of the SSH key files to the correct user
 chown "$SUDO_USER":"$SUDO_USER" "$SSH_KEY_PATH" "$SSH_KEY_PATH.pub"
 
-# Print message to user
+# Rest of the setup will be done by the user
 echo "Pre-ansible setup complete!"
 echo "SSH key generated successfully. Please add the following public key to your GitHub account:"
 cat "$SSH_KEY_PATH.pub"
