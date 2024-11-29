@@ -1,25 +1,17 @@
-# Terminal Tools
 ---
+# *** ___ Terminal Tools ___ ***
+# 1. Start with the dotfiles, since that defines where XDG_CONFIG_HOME is and by proxy where the rest of the tools will be installed.
+#     1a. Check if the dotfiles repo is already cloned
+#     1b. If not, clone the repo
+#     1c. If it is, pull the latest changes
+#     1d. Use stow to install the dotfiles
 
-# Install zoxide
-- name: Install zoxide
-  shell: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-  # when: not zoxide_installed
+# Remove the default .zshrc file that comes in the home directory
+- name: Remove default .zshrc file
+  file:
+    path: "/home/{{ target_user }}/.zshrc"
+    state: absent
 
-
-
-# Install fzf
-# First check it's not already installed, and if so, clone it
-- name: Check if fzf is already installed
-  stat:
-    path: "/home/{{ target_user }}/.fzf"
-  register: fzf_installed
-
-- name: Install fzf
-  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "/home/{{ target_user }}/.fzf" && "/home/{{ target_user }}/.fzf/install"
-  when: not fzf_installed.stat.exists
-
-# Get dotfiles from repo and install them using stow: repo= https://github.com/Phelz/dotfiles
 # Check if repo is already cloned
 - name: Check if dotfiles directory exists
   stat:
@@ -33,8 +25,7 @@
     dest: "/home/{{ target_user }}/dotfiles"
   when: not dotfiles_directory.stat.exists
 
-# # If cloning for the first time, change ownership of the dotfiles directory and its contents
-# Otherwise do a git pull
+# Otherwise, pull the latest changes
 - name: Pull dotfiles
   git:
     repo: https://github.com/Phelz/dotfiles
@@ -46,19 +37,36 @@
 - name: Install dotfiles
   shell: cd "/home/{{ target_user }}/dotfiles" && stow .
 
+# *** ___ Other Tools ___ ***
+# Install zoxide, doesn't matter if it's already installed
+- name: Install zoxide
+  shell: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+# Install fzf
+# First check it's not already installed, and if so, clone it
+- name: Check if fzf is already installed
+  stat:
+    path: "/home/{{ target_user }}/.fzf"
+  register: fzf_installed
+
+- name: Install fzf
+  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "/home/{{ target_user }}/.fzf" && "/home/{{ target_user }}/.fzf/install"
+  when: not fzf_installed.stat.exists
+
+
 # Install tmux plugin manager
 # Even if tpm is already installed, we need it under /home/user/.config/tmux/plugins/tpm, so only check if its installed there
 # Check
 - name: Check if tpm is already installed
   stat: 
-    path: "/home/{{ target_user }}/.config/tmux/plugins/tpm"
+    path: "{{ xdg_config_home }}/tmux/plugins/tpm"
   register: tpm_installed
 
 # Install tpm
 - name: Install tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: "/home/{{ target_user }}/.config/tmux/plugins/tpm"
+    dest: "{{ xdg_config_home }}/tmux/plugins/tpm"
   when: not tpm_installed.stat.exists
 
 # Install starship prompt
@@ -72,7 +80,7 @@
   args:
     executable: /bin/zsh
 
-# # Make Zsh the default shell
+# TODO: Make Zsh the default shell
 # - name: Set Zsh as the default shell
 #   shell: chsh -s $(which zsh) {{ target_user }}
 
