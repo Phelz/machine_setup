@@ -4,9 +4,10 @@
 
 ### What I need to do...
 
-1. First, make sure to run:
+1. First, make sure to update then restart:
 ```
 sudo apt update -y && sudo apt upgrade -y
+sudo reboot now
 ```
 2. Now install `git` and `ansible`:
 ```
