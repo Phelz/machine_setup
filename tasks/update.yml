@@ -1,11 +1,27 @@
 ---
-- name: Update and upgrade apt packages
+- name: Update
   apt:
     update_cache: yes
+
+- name: Upgrade
+  apt:
     upgrade: dist
     force_apt_get: yes
 
-# Print a message to the console
-- debug:
-    msg: "Update and upgrade apt packages complete."
+- name: Install necessary packages
+  apt:
+    name:
+      - curl
+      - wget
+      - git
+      - build-essential
+      - vim
+      - stow
+      - nano
+      - htop
+      - gh
+      - zsh
+      - tmux
+      
+    state: present
 

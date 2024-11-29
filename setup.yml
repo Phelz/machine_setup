@@ -1,14 +1,28 @@
 ---
 - name: Automate Ubuntu setup
   hosts: localhost
-  become: true
+
+  tasks:
+    # - block:
+    #     - include_tasks: tasks/packages.yml
+    #   become: yes
+    #   become_user: root
+    
+
+    - block:
+        - include_tasks: tasks/terminal.yml # This needs to be run as the target user
+      become: yes
+      become_user: "{{ target_user }}"
+
+
+
   # vars:
   #     target_user: "philo"
-  tasks:
-    - include_tasks: tasks/update.yml
-    - include_tasks: tasks/packages.yml
-    - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/terminal.yml
+  # tasks:
+  #   - include_tasks: tasks/update.yml
+  #   - include_tasks: tasks/packages.yml
+  #   - include_tasks: tasks/ssh.yml
+  #   - include_tasks: tasks/terminal.yml
       # vars:
       #   target_user: "{{ target_user }}"  # Pass target_user to included task
     # - include_tasks: tasks/chrome.yml

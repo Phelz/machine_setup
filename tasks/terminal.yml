@@ -1,12 +1,5 @@
 # Terminal Tools
 ---
-# Start by installing zsh
-- name: Install Zsh
-  apt:
-    name: 
-      - zsh
-      - tmux
-    state: present
 
 # Install zoxide
 - name: Install zoxide
@@ -14,29 +7,30 @@
   # when: not zoxide_installed
 
 
+
 # Install fzf
 # First check it's not already installed, and if so, clone it
 - name: Check if fzf is already installed
   stat:
-    path: "{{ ansible_env.HOME }}/.fzf"
+    path: "/home/{{ target_user }}/.fzf"
   register: fzf_installed
 
 - name: Install fzf
-  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "{{ ansible_env.HOME }}/.fzf" && "{{ ansible_env.HOME }}/.fzf/install"
+  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "/home/{{ target_user }}/.fzf" && "/home/{{ target_user }}/.fzf/install"
   when: not fzf_installed.stat.exists
 
 # Get dotfiles from repo and install them using stow: repo= https://github.com/Phelz/dotfiles
 # Check if repo is already cloned
 - name: Check if dotfiles directory exists
   stat:
-    path: "{{ ansible_env.HOME }}/dotfiles"
+    path: "/home/{{ target_user }}/dotfiles"
   register: dotfiles_directory
 
 # If not cloned, clone the repo
 - name: Clone dotfiles
   git:
     repo: https://github.com/Phelz/dotfiles
-    dest: "{{ ansible_env.HOME }}/dotfiles"
+    dest: "/home/{{ target_user }}/dotfiles"
   when: not dotfiles_directory.stat.exists
 
 # # If cloning for the first time, change ownership of the dotfiles directory and its contents
@@ -44,33 +38,32 @@
 - name: Pull dotfiles
   git:
     repo: https://github.com/Phelz/dotfiles
-    dest: "{{ ansible_env.HOME }}/dotfiles"
+    dest: "/home/{{ target_user }}/dotfiles"
     update: yes
   when: dotfiles_directory.stat.exists
 
 # Finally, use stow to install the dotfiles
 - name: Install dotfiles
-  shell: cd "{{ ansible_env.HOME }}/dotfiles" && stow .
+  shell: cd "/home/{{ target_user }}/dotfiles" && stow .
 
 # Install tmux plugin manager
 # Even if tpm is already installed, we need it under /home/user/.config/tmux/plugins/tpm, so only check if its installed there
 # Check
 - name: Check if tpm is already installed
   stat: 
-    path: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm"
+    path: "/home/{{ target_user }}/.config/tmux/plugins/tpm"
   register: tpm_installed
 
 # Install tpm
 - name: Install tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm"
+    dest: "/home/{{ target_user }}/.config/tmux/plugins/tpm"
   when: not tpm_installed.stat.exists
-
 
 # Install starship prompt
 - name: Install starship prompt
-  shell: curl -sS https://starship.rs/install.sh -y | sh 
+  shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 
 # Install zap after the dotfiles have been copied
@@ -79,8 +72,7 @@
   args:
     executable: /bin/zsh
 
-
-# ! TODO: Figure this part  out
 # # Make Zsh the default shell
 # - name: Set Zsh as the default shell
-#   shell: chsh -s $(which zsh) {{ ansible_user_id }}
+#   shell: chsh -s $(which zsh) {{ target_user }}
+

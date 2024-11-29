@@ -29,7 +29,9 @@ Since this is my laptop, I'd need to
     1. Generating an SSH Key.
     2. Using `gh auth login` along with my personal access token. 
 
-- Run commmand `ansible-playbook playbook.yml -e "target_user=username"` replacing "username".
+- Run commmand `ansible-playbook setup.yml --extra-vars "target_user=username" -v` replacing "username". 
+
+***Might be asked for a password a couple times during the installation.***
 
 ## What I did...
 

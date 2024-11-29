@@ -1,4 +1,13 @@
 ---
+- name: Update
+  apt:
+    update_cache: yes
+
+- name: Upgrade
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+
 - name: Install necessary packages
   apt:
     name:
@@ -11,8 +20,12 @@
       - nano
       - htop
       - gh
+      - zsh
+      - tmux
+      
     state: present
 
-# Print a message to the console
-- debug:
-    msg: "Installation of necessary packages complete."
+
+# Install starship prompt 
+- name: Install starship prompt
+  shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
