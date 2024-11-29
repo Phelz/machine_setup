@@ -46,11 +46,11 @@
 # First check it's not already installed, and if so, clone it
 - name: Check if fzf is already installed
   stat:
-    path: "{{ xdg_data_home }}/.fzf"
+    path: "/home/{{ target_user }}/.fzf"
   register: fzf_installed
 
 - name: Install fzf
-  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "{{ xdg_data_home }}/.fzf" && "{{ xdg_data_home }}/.fzf/install"
+  shell: git clone --depth 1 https://github.com/junegunn/fzf.git /home/{{ target_user }}/.fzf && /home/{{ target_user }}/.fzf/install
   when: not fzf_installed.stat.exists
 
 # Install tmux plugin manager
