@@ -10,7 +10,7 @@ sudo apt update -y && sudo apt upgrade -y
 ```
 2. Now install `git` and `ansible`:
 ```
-sudo apt install git ansible -y
+sudo apt install git gh ansible -y
 ```
 3. Clone the repo:
 ```
