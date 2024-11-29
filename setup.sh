@@ -82,6 +82,7 @@ echo "OR...."
 echo "gh auth login --token (FOR TOKEN AUTHENTICATION)"
 echo "gh auth refresh -h github.com -s admin:public_key"
 echo "gh ssh-key add $SSH_KEY_PATH.pub -t \"$(hostname)\""
+echo "ssh -T git@github.com"
 
 
 
