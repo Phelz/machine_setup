@@ -28,8 +28,7 @@ Since this is my laptop, I'd need to
 - Setup an SSH Key and add it to my github account. This part is done by
     1. Generating an SSH Key.
     2. Using `gh auth login` along with my personal access token.
-    3. Add the key using `ssh-add ~/.ssh/KEY_ID`, replacing `KEY_ID` with your key.
-    2. Using `gh auth login` along with my personal access token. 
+    3. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"`, replacing `KEY_ID` with your key and `YOUR_TITLE' with whatever name you want.
 
 - Run commmand `ansible-playbook setup.yml --extra-vars "target_user=username" -v` replacing "username". 
 
