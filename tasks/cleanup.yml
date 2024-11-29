@@ -1,0 +1,10 @@
+---
+
+# Remove the default .zshrc file that comes in the home directory
+- name: Remove default .zshrc file
+  file:
+    path: "/home/{{ target_user }}/.zshrc"
+    state: absent
+
+- name: Set Zsh as the default shell
+  shell: chsh -s $(which zsh) {{ target_user }}

@@ -30,12 +30,12 @@ Since this is my laptop, I'd need to
     2. Checking the ssh agent: `eval "$(ssh-agent -s)"`
     3. Adding the private key to the agent: `ssh-add ~/.ssh/KEY_ID`
     4. Using `gh auth login` alongside a personal access token or via browser, setting SSH as the preferred protocol.
-    5. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"`
+    <!-- 5. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"` -->
    replacing `KEY_ID` with your key and `YOUR_TITLE' with whatever name you want.
 
 I recommend doing this process before cloning the repo. Then you can clone via SSH (instead of having to switch the HTTPS remote later on when trying to edit the repo).
 
-- Run commmand `ansible-playbook setup.yml --extra-vars "target_user=username" -v` replacing "username". 
+- Run commmand `ansible-playbook setup.yml --extra-vars "target_user=philo" -v` replacing "philo" with your "username". 
 
 ***Might be asked for a password a couple times during the installation.***
 

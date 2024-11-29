@@ -3,16 +3,20 @@
   hosts: localhost
 
   tasks:
-    # - block:
-    #     - include_tasks: tasks/packages.yml
-    #   become: yes
-    #   become_user: root
+    - block:
+        - include_tasks: tasks/packages.yml
+        - include_tasks: tasks/cleanup.yml
+      become: yes
+      become_user: root
+      vars:
+        target_user: "{{ target_user }}"
     
 
     - block:
         - include_tasks: tasks/terminal.yml # This needs to be run as the target user
       become: yes
       become_user: "{{ target_user }}"
+      become_method: sudo
       vars:
         xdg_config_home: "/home/{{ target_user }}/.config"
         xdg_data_home: "{{ xdg_config_home }}/local/share"

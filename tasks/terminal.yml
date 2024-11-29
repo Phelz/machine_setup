@@ -21,14 +21,14 @@
 # If not cloned, clone the repo
 - name: Clone dotfiles
   git:
-    repo: https://github.com/Phelz/dotfiles
+    repo: git@github.com:Phelz/dotfiles.git
     dest: "/home/{{ target_user }}/dotfiles"
   when: not dotfiles_directory.stat.exists
 
 # Otherwise, pull the latest changes
 - name: Pull dotfiles
   git:
-    repo: https://github.com/Phelz/dotfiles
+    repo: git@github.com:Phelz/dotfiles.git
     dest: "/home/{{ target_user }}/dotfiles"
     update: yes
   when: dotfiles_directory.stat.exists
@@ -46,13 +46,12 @@
 # First check it's not already installed, and if so, clone it
 - name: Check if fzf is already installed
   stat:
-    path: "/home/{{ target_user }}/.fzf"
+    path: "{{ xdg_data_home }}/.fzf"
   register: fzf_installed
 
 - name: Install fzf
-  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "/home/{{ target_user }}/.fzf" && "/home/{{ target_user }}/.fzf/install"
+  shell: git clone --depth 1 https://github.com/junegunn/fzf.git "{{ xdg_data_home }}/.fzf" && "{{ xdg_data_home }}/.fzf/install"
   when: not fzf_installed.stat.exists
-
 
 # Install tmux plugin manager
 # Even if tpm is already installed, we need it under /home/user/.config/tmux/plugins/tpm, so only check if its installed there
@@ -79,8 +78,4 @@
   shell: zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 -k
   args:
     executable: /bin/zsh
-
-# TODO: Make Zsh the default shell
-# - name: Set Zsh as the default shell
-#   shell: chsh -s $(which zsh) {{ target_user }}
 

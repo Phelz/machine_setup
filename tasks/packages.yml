@@ -26,6 +26,3 @@
     state: present
 
 
-# Install starship prompt 
-- name: Install starship prompt
-  shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
