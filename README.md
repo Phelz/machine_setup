@@ -26,9 +26,12 @@ Since this is my laptop, I'd need to
 - Install GPU drivers.
 - Link Google account.
 - Setup an SSH Key and add it to my github account. This part is done by
-    1. Generating an SSH Key.
-    2. Using `gh auth login` along with my personal access token.
-    3. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"`, replacing `KEY_ID` with your key and `YOUR_TITLE' with whatever name you want.
+    1. Generating an SSH Key: `ssh-keygen -t ed25519 -C "philogeee@gmail.com"`
+    2. Checking the ssh agent: `eval "$(ssh-agent -s)"`
+    3. Adding the private key to the agent: `ssh-add ~/.ssh/KEY_ID`
+    4. Using `gh auth login` alongside a personal access token.
+    5. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"`
+   replacing `KEY_ID` with your key and `YOUR_TITLE' with whatever name you want.
 
 I recommend doing this process before cloning the repo. Then you can clone via SSH (instead of having to switch the HTTPS remote later on when trying to edit the repo).
 
