@@ -105,3 +105,4 @@ echo -e "${YELLOW}gh auth login --token ${RESET}(FOR TOKEN AUTHENTICATION)"
 echo -e "${YELLOW}gh auth refresh -h github.com -s admin:public_key${RESET}"
 echo -e "${YELLOW}gh ssh-key add $SSH_KEY_PATH.pub -t \"$(hostname)\"${RESET}"
 echo -e "${YELLOW}ssh -T git@github.com${RESET}"
+
