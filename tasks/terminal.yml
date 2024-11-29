@@ -6,11 +6,6 @@
 #     1c. If it is, pull the latest changes
 #     1d. Use stow to install the dotfiles
 
-# Remove the default .zshrc file that comes in the home directory
-- name: Remove default .zshrc file
-  file:
-    path: "/home/{{ target_user }}/.zshrc"
-    state: absent
 
 # Check if repo is already cloned
 - name: Check if dotfiles directory exists
@@ -79,3 +74,8 @@
   args:
     executable: /bin/zsh
 
+# Remove the default .zshrc file that comes in the home directory
+- name: Remove default .zshrc file
+  file:
+    path: "/home/{{ target_user }}/.zshrc"
+    state: absent
