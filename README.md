@@ -36,7 +36,11 @@ Since this is my laptop, I'd need to
 
 I recommend doing this process before cloning the repo. Then you can clone via SSH (instead of having to switch the HTTPS remote later on when trying to edit the repo).
 
-- Run commmand `ansible-playbook setup.yml --extra-vars "target_user=philo" -v` replacing "philo" with your "username". 
+- Run commmand `ansible-playbook setup.yml --extra-vars "target_user=philo" -v` replacing "philo" with your "username". Before doing this however, make sure you've run some command with sudo, something like:
+```
+sudo echo hi;
+ansible-playbook setup.yml --extra-vars "target_user=philo" -v
+```
 
 ***Might be asked for a password a couple times during the installation.***
 
