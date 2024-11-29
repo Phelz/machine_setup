@@ -12,7 +12,11 @@ sudo apt update -y && sudo apt upgrade -y
 ```
 sudo apt install git ansible -y
 ```
-3. Then run the ansible playbook via:
+3. Clone the repo:
+```
+git clone https://github.com/Phelz/machine_setup
+```
+4. Then run the ansible playbook via:
 ```
 sudo ansible-playbook -v setup.yml --become-user=USERNAME --ask-become-pass
 ```
@@ -23,7 +27,7 @@ Since this is my laptop, I'd need to
 - Link Google account.
 - Setup an SSH Key and add it to my github account. This part is done by
     1. Generating an SSH Key.
-    2. Using `gh auth login` along with my personal access token.
+    2. Using `gh auth login` along with my personal access token. 
 
 - Run commmand `ansible-playbook playbook.yml -e "target_user=username"` replacing "username".
 
