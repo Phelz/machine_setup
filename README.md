@@ -29,7 +29,7 @@ Since this is my laptop, I'd need to
     1. Generating an SSH Key: `ssh-keygen -t ed25519 -C "philogeee@gmail.com"`
     2. Checking the ssh agent: `eval "$(ssh-agent -s)"`
     3. Adding the private key to the agent: `ssh-add ~/.ssh/KEY_ID`
-    4. Using `gh auth login` alongside a personal access token.
+    4. Using `gh auth login` alongside a personal access token or via browser, setting SSH as the preferred protocol.
     5. Add the key using `gh ssh-key add ~/.ssh/KEY_ID.pub --title "YOUR_TITLE"`
    replacing `KEY_ID` with your key and `YOUR_TITLE' with whatever name you want.
 
