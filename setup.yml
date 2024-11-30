@@ -11,8 +11,8 @@
     #     target_user: "{{ target_user }}"
 
     - block:
-        # - include_tasks: tasks/terminal.yml # This needs to be run as the target user
-        - include_tasks: tasks/anaconda.yml
+        - include_tasks: tasks/terminal.yml # This needs to be run as the target user
+        # - include_tasks: tasks/anaconda.yml
       become: yes
       become_user: "{{ target_user }}"
       become_method: sudo

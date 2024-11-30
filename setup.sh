@@ -44,6 +44,13 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
+# Change the default port to 9211
+sed -i 's/#Port 22/Port 9211/' /etc/ssh/sshd_config
+echo -e "${GREEN}SSH port changed to 9211.${RESET}"
+
+# Cat the sshd_config file to confirm the change
+cat /etc/ssh/sshd_config | grep Port
+
 # Restart SSH service
 systemctl restart sshd.service
 if [[ $? -eq 0 ]]; then
@@ -52,6 +59,8 @@ else
   echo -e "${RED}Failed to restart SSH service. Check logs for details.${RESET}" >&2
   exit 1
 fi
+
+# TODO: Make sure its enabled on startup
 
 # Create .ssh directory if it doesn't exist
 if [[ ! -d "$USER_HOME/.ssh" ]]; then
