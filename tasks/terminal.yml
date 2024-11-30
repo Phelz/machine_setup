@@ -7,6 +7,7 @@
 #     1d. Use stow to install the dotfiles
 
 
+# *** ___ Dotfiles ___ ***
 # Check if repo is already cloned
 - name: Check if dotfiles directory exists
   stat:
@@ -32,7 +33,8 @@
 - name: Install dotfiles
   shell: cd "/home/{{ target_user }}/dotfiles" && stow .
 
-# *** ___ Other Tools ___ ***
+
+# *** ___ zoxide ___ ***
 # Install zoxide, doesn't matter if it's already installed
 - name: Install zoxide
   shell: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
@@ -48,7 +50,7 @@
   shell: git clone --depth 1 https://github.com/junegunn/fzf.git /home/{{ target_user }}/.fzf && /home/{{ target_user }}/.fzf/install
   when: not fzf_installed.stat.exists
 
-# Install tmux plugin manager
+# *** ___ Tmux ___ ***
 # Even if tpm is already installed, we need it under /home/user/.config/tmux/plugins/tpm, so only check if its installed there
 # Check
 - name: Check if tpm is already installed
@@ -63,11 +65,19 @@
     dest: "{{ xdg_config_home }}/tmux/plugins/tpm"
   when: not tpm_installed.stat.exists
 
-# Install starship prompt
+
+
+# *** ___ Starship ___ ***
 - name: Install starship prompt
   shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 
+
+
+
+
+
+# *** ___ Zap ___ ***
 # Install zap after the dotfiles have been copied
 - name: Install zap plugin manager
   shell: zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 -k
