@@ -22,7 +22,5 @@
       - gh
       - zsh
       - tmux
-      
+
     state: present
-
-

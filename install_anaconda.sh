@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # Function to format version strings as YYYY.MM
 format_version() {
   printf "%04d.%02d" "$1" "$2"

@@ -23,9 +23,15 @@ sudo ansible-playbook -v setup.yml --become-user=USERNAME --ask-become-pass
 ```
 replacing `USERNAME`. The `--ask-become-pass` option prompts you for your password, and will enable you to authenticate yourself, as some processes require run-time validation.
 
-Since this is my laptop, I'd need to
+### Setup SSH
+
+#### Client Side
+
 - Setup SSH. The `setup.sh` script does that and also initializes the github authentication process.
-- Setup SSH keys from other devices by adding them to the `$HOME/.ssh/authorized_keys` file. 
+
+#### Server Side
+
+- Setup SSH keys from other devices by adding them to the `$HOME/.ssh/authorized_keys` file.
 - Disable the `PermitRootLogin` and `PasswordAuthentication` options in the `/etc/ssh/sshd_config` file. Then run `sudo systemctl restart sshd`. Make sure you can login via your SSH Key first before disabling these options. 
 
 

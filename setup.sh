@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# TODO: NEEDS TESTING
+
 
 # Define color variables using tput
 RED=$(tput setaf 1)
