@@ -48,14 +48,28 @@
   args:
     executable: /bin/zsh
 
+# Step 6: Configuration
+# Step 6a: Disable automatic activation of base environment
+- name: Disable automatic activation of base environment
+  shell: "{{ ansible_env.HOME }}/anaconda3/bin/conda config --set auto_activate_base false"
+  args:
+    executable: /bin/bash
+
+# Step 6b: Disable prompt modification
+- name: Disable prompt modification
+  shell: "{{ ansible_env.HOME }}/anaconda3/bin/conda config --set changeps1 false"
+  args:
+    executable: /bin/bash
+
+
 # TODO: Eventually, treat .bashrc like i do with .zshrc
-# Step 6: Source the .bashrc file
+# Step 7: Source the .bashrc file
 - name: Source the .bashrc file
   shell: source {{ ansible_env.HOME }}/.bashrc
   args:
     executable: /bin/bash
 
-# Step 7: Source the .zshrc file
+# Step 8: Source the .zshrc file
 - name: Source the .zshrc file
   shell: source "{{ xdg_config_home }}/zsh/.zshrc"
   args:
