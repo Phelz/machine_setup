@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# *** ___ This script is to be ran at the very end of the setup process.
+
 declare -a fonts=(
     # BitstreamVeraSansMono
     # CodeNewRoman
@@ -38,5 +40,13 @@ for font in "${fonts[@]}"; do
 done
 
 find "$fonts_dir" -name '*Windows Compatible*' -delete
+
+echo "Installing Microsoft TrueType core fonts. This requires administrative privileges:"
+echo "Running 'sudo apt install msttcorefonts -qq'"
+apt install msttcorefonts -qq
+
+echo "Cleaning Matplotlib cache..."
+rm -rf ~/.cache/matplotlib
+
 
 fc-cache -fv
