@@ -1,5 +1,7 @@
 # Machine Setup
 
+Written for Ubuntu 22.04 LTS.
+
 ## Installation
 
 ### What I need to do...
@@ -20,6 +22,7 @@ git clone https://github.com/Phelz/machine_setup
 4. Then run the ansible playbook via:
 ```
 sudo ansible-playbook -v setup.yml --become-user=USERNAME --ask-become-pass
+sudo echo hi && ansible-playbook setup.yml -e "target_user=philo" -v
 ```
 replacing `USERNAME`. The `--ask-become-pass` option prompts you for your password, and will enable you to authenticate yourself, as some processes require run-time validation.
 

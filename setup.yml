@@ -22,7 +22,7 @@
 
     - block:
         - include_tasks: tasks/cleanup.yml
-        - include_tasks: tasks/eza.yml
+        # - include_tasks: tasks/eza.yml # ! NOT TESTED
       become: yes
       become_user: root
       vars:

@@ -22,5 +22,6 @@
       - gh
       - zsh
       - tmux
+      - cmake
 
     state: present
