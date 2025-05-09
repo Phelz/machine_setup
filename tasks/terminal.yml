@@ -15,7 +15,24 @@
   register: dotfiles_directory
 
 # If not cloned, clone the repo
-- name: Clone dotfiles
+
+#! Cloning the first ever repo using ssh will require the user to accept the host key,
+# ! This is not tested
+# TODO Test this
+- name: Ensure SSH known_hosts directory exists
+  file:
+    path: "/home/{{ target_user }}/.ssh"
+    state: directory
+    mode: '0700'
+    owner: "{{ target_user }}"
+    group: "{{ target_user }}"
+
+- name: Accept GitHub host key
+  shell: ssh-keyscan github.com >> /home/{{ target_user }}/.ssh/known_hosts
+  args:
+    creates: "/home/{{ target_user }}/.ssh/known_hosts"
+
+- name: Clone dotfiles 
   git:
     repo: git@github.com:Phelz/dotfiles.git
     dest: "/home/{{ target_user }}/dotfiles"

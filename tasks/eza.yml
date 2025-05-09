@@ -1,4 +1,3 @@
-
 # *** ___ Eza ___ ***
 - name: Install gpg
   apt:
@@ -9,7 +8,7 @@
   file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '0755'
+    mode: "0755"
     owner: root
     group: root
 
@@ -26,7 +25,7 @@
 - name: Set permissions for keyring and sources list
   file:
     path: "{{ item }}"
-    mode: '0644'
+    mode: "0644"
     owner: root
     group: root
   with_items:
@@ -36,10 +35,10 @@
 - name: Update apt repository after adding eza repo
   apt:
     update_cache: yes
-  become: yes
+  become: true
 
 - name: Install eza
   apt:
     name: eza
     state: present
-  become: yes
+  become: true
