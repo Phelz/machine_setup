@@ -3,19 +3,20 @@
 # This setup of Anaconda is based on the instructions from the official website.
 
 # Step 1: Dependencies
-- name: Install dependencies
-  apt:
-    name:
-      - libgl1-mesa-glx
-      - libegl1-mesa
-      - libxrandr2
-      - libxss1
-      - libxcursor1
-      - libxcomposite1
-      - libasound2
-      - libxi6
-      - libxtst6
-    state: present
+# - name: Install dependencies
+#   apt:
+#     name:
+#       # - libgl1-mesa-glx
+#       # - libegl1-mesa
+#       - libegl1
+#       - libxrandr2
+#       - libxss1
+#       - libxcursor1
+#       - libxcomposite1
+#       - libasound2
+#       - libxi6
+#       - libxtst6
+#     state: present
 
 # Step 2: Look for the latest linux version of anaconda x86_64 in the https://repo.anaconda.com/archive
 - name: Find the lastest anaconda version
